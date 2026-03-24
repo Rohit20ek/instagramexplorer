@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura | 3D Interactive E-Commerce</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Model Viewer component -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+
+    <!-- App Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <a href="#" class="logo">AURA<span class="accent">.</span></a>
+            <div class="nav-links">
+                <a href="#discover" class="nav-link">Discover</a>
+                <a href="#collection" class="nav-link">Collection</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn search-btn" aria-label="Search">
+                    <i data-lucide="search"></i>
+                </button>
+                <button class="icon-btn cart-btn" id="open-cart-btn" aria-label="Shopping Cart">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero" id="discover">
+            <div class="hero-content">
+                <div class="badge glass fade-in-up" style="animation-delay: 0.1s;">
+                    <span class="pulse-dot"></span> New Drop Available
+                </div>
+                <h1 class="hero-title fade-in-up" style="animation-delay: 0.2s;">
+                    Step into the <br> <span class="text-gradient">Future of Footwear</span>
+                </h1>
+                <p class="hero-description fade-in-up" style="animation-delay: 0.3s;">
+                    Experience unparalleled comfort and cutting-edge aesthetics. Designed for those who dare to stand out. Interactively explore every detail.
+                </p>
+                <div class="hero-actions fade-in-up" style="animation-delay: 0.4s;">
+                    <button class="btn btn-primary" id="hero-add-to-cart" data-id="1" data-name="Aura Space Gear" data-price="249" data-image="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
+                        Add to Cart — $249
+                    </button>
+                    <button class="btn btn-secondary glass">
+                        <i data-lucide="play-circle"></i> Watch Video
+                    </button>
+                </div>
+                
+                <div class="hero-stats fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="stat">
+                        <span class="stat-value">10k+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                    <div class="stat divider"></div>
+                    <div class="stat">
+                        <span class="stat-value">4.9/5</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-3d-model fade-in" style="animation-delay: 0.3s;">
+                <div class="model-glow"></div>
+                <!-- 3D Model Viewer using Google's sample astronaut -->
+                <model-viewer 
+                    src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                    camera-controls
+                    auto-rotate
+                    rotation-per-second="30deg"
+                    shadow-intensity="1"
+                    shadow-softness="1"
+                    environment-image="neutral"
+                    exposure="1"
+                    alt="A 3D model of futuristic gear">
+                </model-viewer>
+                
+                <div class="interaction-hint glass">
+                    <i data-lucide="mouse-pointer-click"></i> Drag to rotate, scroll to zoom
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Grid Section -->
+        <section class="collection" id="collection">
+            <div class="section-header">
+                <h2 class="section-title">Trending <span class="text-gradient">Now</span></h2>
+                <a href="#" class="view-all">View All Collection <i data-lucide="arrow-right"></i></a>
+            </div>
+
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card glass 3d-card" data-tilt>
+                    <div class="card-image-wrapper">
+                        <!-- We use a static image representation of the model to save loading overhead for grids -->
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sneaker 1" class="product-image">
+                        <div class="card-badge">Bestseller</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-title">Aura Velocity</h3>
+                        <p class="product-category">Running Shoes</p>
+                        <div class="product-footer">
+                            <span class="product-price">$189.00</span>
+                            <button class="add-btn add-to-cart" data-id="2" data-name="Aura Velocity" data-price="189" aria-label="Add to cart">
+                                <i data-lucide="plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card glass 3d-card" data-tilt>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sneaker 2" class="product-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-title">Aura Phantom</h3>
+                        <p class="product-category">Streetwear</p>
+                        <div class="product-footer">
+                            <span class="product-price">$210.00</span>
+                            <button class="add-btn add-to-cart" data-id="3" data-name="Aura Phantom" data-price="210" aria-label="Add to cart">
+                                <i data-lucide="plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card glass 3d-card" data-tilt>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sneaker 3" class="product-image">
+                        <div class="card-badge sale">Sale</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="product-title">Aura Crimson X</h3>
+                        <p class="product-category">Limited Edition</p>
+                        <div class="product-footer">
+                            <span class="product-price"><span class="old-price">$280</span> $220.00</span>
+                            <button class="add-btn add-to-cart" data-id="4" data-name="Aura Crimson X" data-price="220" aria-label="Add to cart">
+                                <i data-lucide="plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shopping Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-sidebar glass-heavy" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="icon-btn" id="close-cart-btn" aria-label="Close cart">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be injected here via JS -->
+            <div class="empty-cart-msg">Your cart is currently empty.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" id="checkout-btn" disabled>
+                Proceed to Checkout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Search Engine</h1>
+            <p>Powered by NLP & Flask</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Type your query here..." autocomplete="off">
+            <select id="search-method">
+                <option value="stemming">Stemming</option>
+                <option value="bow">Bag of Words</option>
+                <option value="exact">Exact Match</option>
+            </select>
+            <button id="search-btn">Search</button>
+        </div>
+
+        <div id="results-container" class="results">
+            <!-- Results will be injected here -->
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const searchMethod = document.getElementById('search-method');
+        const searchBtn = document.getElementById('search-btn');
+        const resultsContainer = document.getElementById('results-container');
+
+        async function performSearch() {
+            const query = searchInput.value.trim();
+            const method = searchMethod.value;
+            if (!query) return;
+
+            try {
+                const response = await fetch(`/search?q=${encodeURIComponent(query)}&method=${method}`);
+                const results = await response.json();
+
+                resultsContainer.innerHTML = '';
+
+                if (results.length === 0) {
+                    resultsContainer.innerHTML = '<div class="no-results">No results found.</div>';
+                    return;
+                }
+
+                results.forEach(result => {
+                    const resultCard = document.createElement('div');
+                    resultCard.className = 'result-card';
+                    resultCard.innerHTML = `
+                        <div class="result-header">
+                            <span class="result-score">Score: ${result.score}</span>
+                        </div>
+                        <p class="result-content">${result.content}</p>
+                    `;
+                    resultsContainer.appendChild(resultCard);
+                });
+            } catch (error) {
+                console.error('Error searching:', error);
+                resultsContainer.innerHTML = '<div class="error">An error occurred while searching.</div>';
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+    </script>
+</body>
+
+</html>
